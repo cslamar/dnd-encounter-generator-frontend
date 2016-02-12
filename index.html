@@ -20,7 +20,6 @@
         </div>
         <ul class="monsters-list">
           <li ng-repeat="monster in monsters | filter:query">
-            <!-- <a href="/api/v1/monsters/{{monster.id}}/">{{monster.name}}</a> -->
             <a href="#" ng-click="getMonsterInfo(monster.id)">{{monster.name}}</a>
           </li>
         </ul>
