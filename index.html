@@ -12,7 +12,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
-        <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
+        <div class="search-alert">
+          <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
+          <button class="btn btn-primary btn-sm" type="button">
+            Monsters <span class="badge">5</span>
+          </button>
+        </div>
         <ul class="monsters-list">
           <li ng-repeat="monster in monsters | filter:query">
             <!-- <a href="/api/v1/monsters/{{monster.id}}/">{{monster.name}}</a> -->
