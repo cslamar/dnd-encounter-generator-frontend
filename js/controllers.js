@@ -40,4 +40,9 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $localStorage,
     $sessionStorage.encounter.push(newMonster);
   }
 
+  $scope.generateXML = function() {
+    var monsterManifest = {"monsters": $scope.$storage.encounter};
+    console.log(monsterManifest);
+  }
+
 });

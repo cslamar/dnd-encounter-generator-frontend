@@ -16,7 +16,7 @@
       <div class="col-md-3">
         <div class="search-alert">
           <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
-          <button class="btn btn-primary btn-sm" type="button">
+          <button class="btn btn-primary btn-sm" type="button" ng-click="generateXML()">
             Generate <span class="badge">{{$storage.monsterCount}}</span>
           </button>
         </div>
