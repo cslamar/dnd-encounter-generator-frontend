@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="encounterApp">
+<head>
+  <meta charset="utf-8">
+  <title>Encounter Generator</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="EncounterCtrl">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <!--Body content-->
+        <!-- <label for="monster-search">Search: </label> -->
+        <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
+        <ul class="monsters-list">
+          <li ng-repeat="monster in monsters | filter:query">
+            <a href="/api/v1/monsters/{{monster.id}}/">{{monster.name}}</a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-9 container">
+        <div class="row">
+        <div class="jumbotron">
+          <h1>Monster Details</h1>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
