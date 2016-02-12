@@ -1,0 +1,14 @@
+{
+  "name": "encounter-builder-frontend",
+  "description": "The frontend for the D&D encounter builder",
+  "version": "0.0.0",
+  "homepage": "https://github.com/cslamar/",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.x",
+    "angular-bootstrap": "~1.x",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.1.1"
+  }
+}
