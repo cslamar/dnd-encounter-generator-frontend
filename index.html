@@ -11,11 +11,12 @@
 <body ng-controller="EncounterCtrl">
   <div class="container-fluid">
     <div class="row">
+
       <div class="col-md-3">
         <div class="search-alert">
           <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
           <button class="btn btn-primary btn-sm" type="button">
-            Monsters <span class="badge">5</span>
+            Generate Encounter <span class="badge">5</span>
           </button>
         </div>
         <ul class="monsters-list">
@@ -23,8 +24,8 @@
             <a href="#" ng-click="getMonsterInfo(monster.id)">{{monster.name}}</a>
           </li>
         </ul>
-
       </div>
+
       <div class="col-md-9 container">
         <div class="jumbotron" ng-if="selectedMonster">
           <h1>{{selectedMonster.name || "Monster Details"}}</h1>
