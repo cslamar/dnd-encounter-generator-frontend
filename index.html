@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/ngstorage/ngStorage.min.js"></script>
   <script src="js/controllers.js"></script>
 </head>
 <body ng-controller="EncounterCtrl">
@@ -16,7 +17,7 @@
         <div class="search-alert">
           <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
           <button class="btn btn-primary btn-sm" type="button">
-            Generate Encounter <span class="badge">5</span>
+            Generate <span class="badge">{{$storage.monsterCount}}</span>
           </button>
         </div>
         <ul class="monsters-list">
@@ -46,7 +47,7 @@
           </div>
           <ul class="list-inline">
             <li>
-              <a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to Encounter</a>
+              <a class="btn btn-primary btn-lg" href="#" role="button" ng-click="addMonster(some_name, selectedMonster.name)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to Encounter</a>
             </li>
             <li>
               <a class="btn btn-success btn-lg" href="#" role="button" ng-click="addName()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Generate Name</a>

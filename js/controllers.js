@@ -1,7 +1,13 @@
-var encounterApp = angular.module('encounterApp', []);
+var encounterApp = angular.module('encounterApp', ['ngStorage']);
 
-encounterApp.controller('EncounterCtrl', function ($scope, $http) {
+encounterApp.controller('EncounterCtrl', function ($scope, $http, $localStorage, $sessionStorage) {
   var name_array = [];
+  $scope.$storage = $sessionStorage;
+  $scope.$storage = $sessionStorage.$default({
+    monsterCount: 0,
+    encounter: []
+  });
+
   $http.get('http://e.slamar.com/api/v1/monsters/').success(function(data) {
     $scope.monsters = data.monsters;
   });
@@ -25,6 +31,13 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http) {
       console.log(data);
       $scope.selectedMonster = data;
     });
+  }
+
+  $scope.addMonster = function(name, monster) {
+    console.log(name, monster);
+    $sessionStorage.monsterCount = $sessionStorage.monsterCount + 1;
+    var newMonster = {"name": name, "monster": monster};
+    $sessionStorage.encounter.push(newMonster);
   }
 
 });
