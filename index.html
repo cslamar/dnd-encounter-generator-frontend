@@ -15,18 +15,17 @@
         <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
         <ul class="monsters-list">
           <li ng-repeat="monster in monsters | filter:query">
-            <a href="/api/v1/monsters/{{monster.id}}/">{{monster.name}}</a>
+            <!-- <a href="/api/v1/monsters/{{monster.id}}/">{{monster.name}}</a> -->
+            <a href="#" ng-click="getMonsterInfo(monster.id)">{{monster.name}}</a>
           </li>
         </ul>
 
       </div>
       <div class="col-md-9 container">
-        <div class="row">
-        <div class="jumbotron">
-          <h1>Monster Details</h1>
-          <h3 id="monster-name"></h3>
+        <div class="jumbotron" ng-if="selectedMonster">
+          <h1>{{selectedMonster.name || "Monster Details"}} <small>{{some_name}}</small></h1>
           <p><a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to Encounter</a></p>
-        </div>
+          <p><a class="btn btn-success btn-lg" href="#" role="button" ng-click="addName()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Name</a></p>
         </div>
       </div>
     </div>
