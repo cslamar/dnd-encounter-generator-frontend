@@ -2,6 +2,7 @@ var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver']);
 
 encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob) {
   var name_array = [];
+
   $scope.$storage = $sessionStorage;
   $scope.$storage = $sessionStorage.$default({
     monsterCount: 0,
@@ -48,14 +49,16 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     .success(function(data){
       console.log("Battle Created!!");
       console.log(data);
+      /*
       // var someFile = new Blob([data], { type: 'application/xml' });
-      var someFile = new Blob([data], { type: 'text/xml' });
+      someFile = new Blob([data], { type: 'text/xml' });
       FileSaver.saveAs(someFile, 'sample-battle.xml', true);
+      */
+      $location.path('/');
     })
     .error(function(data){
       console.log("Something went wrong...");
     });
-
   }
 
 });
