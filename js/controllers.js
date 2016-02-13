@@ -9,6 +9,8 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     encounter: []
   });
 
+  $scope.encounter = $scope.$storage.encounter;
+
   $http.get('http://e.slamar.com/api/v1/monsters/').success(function(data) {
     $scope.monsters = data.monsters;
   });
@@ -54,7 +56,6 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
       someFile = new Blob([data], { type: 'text/xml' });
       FileSaver.saveAs(someFile, 'sample-battle.xml', true);
       */
-      $location.path('/');
     })
     .error(function(data){
       console.log("Something went wrong...");

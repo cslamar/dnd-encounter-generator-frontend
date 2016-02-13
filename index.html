@@ -61,7 +61,10 @@
             <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
           </li>
           <li>
-            <button class="btn btn-primary btn-sm" ng-click="generateXML()">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
+            <form action="/api/v1/generate-encounter/my-battle.xml" method="post">
+              <input name="monsters" value="{{encounter}}" />
+              <button class="btn btn-primary btn-sm" type="submit">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
+            </form>
           </li>
         </ul>
 
