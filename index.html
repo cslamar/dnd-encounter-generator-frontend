@@ -13,7 +13,8 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-9 col-sm-12 container">
+      <div class="col-md-12 col-sm-12 container">
+
         <div class="jumbotron" ng-if="selectedMonster">
           <h1>{{selectedMonster.name || "Monster Details"}}</h1>
           <div class="container">
@@ -31,39 +32,44 @@
             </div>
             </div>
           </div>
+
           <div class="row">
             <div class="container">
               <div class="col-xs-12 col-sm-12">
-
-                <button class="btn btn-primary btn-lg" ng-click="addMonster(some_name, selectedMonster.name)"><span class="glyphicon glyphicon-plus"></span> Add to Encounter</button>
-
-                <button class="btn btn-success btn-lg" ng-click="addName()"><span class="glyphicon glyphicon-refresh" ></span> Generate Name</button>
-
+                <ul class="list-inline">
+                  <li>
+                    <button class="btn btn-primary btn-lg" ng-click="addMonster(some_name, selectedMonster.name)"><span class="glyphicon glyphicon-plus"></span> Add to Encounter</button>
+                  </li>
+                  <li>
+                    <button class="btn btn-success btn-lg" ng-click="addName()"><span class="glyphicon glyphicon-refresh" ></span> Generate Name</button>
+                  </li>
               </div>
             </div>
           </div>
+
         </div>
       </div>
-
+      
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-12">
 
-            <ul class="list-inline">
-              <li>
-                <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
-              </li>
-              <li>
-                <button class="btn btn-primary btn-sm" ng-click="generateXML()">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
-              </li>
-            </ul>
+        <ul class="list-inline">
+          <li>
+            <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
+          </li>
+          <li>
+            <button class="btn btn-primary btn-sm" ng-click="generateXML()">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
+          </li>
+        </ul>
 
         <ul class="monsters-list">
           <li ng-repeat="monster in monsters | filter:query">
             <a href="#" ng-click="getMonsterInfo(monster.id)">{{monster.name}}</a>
           </li>
         </ul>
+
       </div>
     </div>
 
