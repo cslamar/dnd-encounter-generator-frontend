@@ -1,11 +1,3 @@
 body {
   margin: 8px;
 }
-
-.search-alert {
-  display: inline-flex;
-}
-
-.search-alert > button {
-  margin-left: 10px;
-}
