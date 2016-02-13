@@ -44,16 +44,17 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     var monsterManifest = {"monsters": $scope.$storage.encounter, "name": "sample-battle"};
     console.log(monsterManifest);
 
-    $location.url('/api/v1/encounter/sample-battle.xml').search(monsterManifest);
-
-    // $http.post('http://e.slamar.com/api/v1/generate-encounter/', monsterManifest)
-    // .success(function(data){
-    //   console.log("Battle Created!!");
-    //   console.log(data);
-    // })
-    // .error(function(data){
-    //   console.log("Something went wrong...");
-    // });
+    $http.post('http://e.slamar.com/api/v1/generate-encounter/', monsterManifest)
+    .success(function(data){
+      console.log("Battle Created!!");
+      console.log(data);
+      // var someFile = new Blob([data], { type: 'application/xml' });
+      var someFile = new Blob([data], { type: 'text/xml' });
+      FileSaver.saveAs(someFile, 'sample-battle.xml', true);
+    })
+    .error(function(data){
+      console.log("Something went wrong...");
+    });
 
   }
 
