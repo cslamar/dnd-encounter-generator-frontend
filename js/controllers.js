@@ -1,6 +1,6 @@
-var encounterApp = angular.module('encounterApp', ['ngStorage']);
+var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver']);
 
-encounterApp.controller('EncounterCtrl', function ($scope, $http, $localStorage, $sessionStorage) {
+encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob) {
   var name_array = [];
   $scope.$storage = $sessionStorage;
   $scope.$storage = $sessionStorage.$default({
@@ -36,13 +36,25 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $localStorage,
   $scope.addMonster = function(name, monster) {
     console.log(name, monster);
     $sessionStorage.monsterCount = $sessionStorage.monsterCount + 1;
-    var newMonster = {"name": name, "monster": monster};
+    var newMonster = {"label": name, "monster": monster};
     $sessionStorage.encounter.push(newMonster);
   }
 
   $scope.generateXML = function() {
-    var monsterManifest = {"monsters": $scope.$storage.encounter};
+    var monsterManifest = {"monsters": $scope.$storage.encounter, "name": "sample-battle"};
     console.log(monsterManifest);
+
+    $location.url('/api/v1/encounter/sample-battle.xml').search(monsterManifest);
+
+    // $http.post('http://e.slamar.com/api/v1/generate-encounter/', monsterManifest)
+    // .success(function(data){
+    //   console.log("Battle Created!!");
+    //   console.log(data);
+    // })
+    // .error(function(data){
+    //   console.log("Something went wrong...");
+    // });
+
   }
 
 });
