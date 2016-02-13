@@ -13,57 +13,60 @@
   <div class="container-fluid">
     <div class="row">
 
-            <div class="col-md-9 col-sm-12 container pull-right">
-              <div class="jumbotron" ng-if="selectedMonster">
-                <h1>{{selectedMonster.name || "Monster Details"}}</h1>
-                <div class="container">
+      <div class="col-md-9 col-sm-12 container">
+        <div class="jumbotron" ng-if="selectedMonster">
+          <h1>{{selectedMonster.name || "Monster Details"}}</h1>
+          <div class="container">
+            <div class="row">
+            <div class="col-md-4">
+              <span class="lead" ng-if="some_name">Name: <em class="pull-right">{{some_name}}</em></span>
+              <ul class="list-unstyled">
+                <li><span class="lead">Strength: <em class="pull-right">{{selectedMonster.str}}</em></span></li>
+                <li><span class="lead">Dexterity: <em class="pull-right">{{selectedMonster.dex}}</em></span></li>
+                <li><span class="lead">Constitution: <em class="pull-right">{{selectedMonster.con}}</em></span></li>
+                <li><span class="lead">Intelligence: <em class="pull-right">{{selectedMonster.int}}</em></span></li>
+                <li><span class="lead">Wisdom: <em class="pull-right">{{selectedMonster.wis}}</em></span></li>
+                <li><span class="lead">Charisma: <em class="pull-right">{{selectedMonster.cha}}</em></span></li>
+              </ul>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container">
+              <div class="col-xs-12 col-sm-12">
 
-                <div class="col-md-4">
-                  <span class="lead" ng-if="some_name">Name: <em class="pull-right">{{some_name}}</em></span>
-                  <ul class="list-unstyled">
-                    <li><span class="lead">Strength: <em class="pull-right">{{selectedMonster.str}}</em></span></li>
-                    <li><span class="lead">Dexterity: <em class="pull-right">{{selectedMonster.dex}}</em></span></li>
-                    <li><span class="lead">Constitution: <em class="pull-right">{{selectedMonster.con}}</em></span></li>
-                    <li><span class="lead">Intelligence: <em class="pull-right">{{selectedMonster.int}}</em></span></li>
-                    <li><span class="lead">Wisdom: <em class="pull-right">{{selectedMonster.wis}}</em></span></li>
-                    <li><span class="lead">Charisma: <em class="pull-right">{{selectedMonster.cha}}</em></span></li>
-                  </ul>
-                </div>
+                <button class="btn btn-primary btn-lg" ng-click="addMonster(some_name, selectedMonster.name)"><span class="glyphicon glyphicon-plus"></span> Add to Encounter</button>
 
-                </div>
-                <ul class="list-inline">
-                  <li>
-                    <button class="btn btn-primary btn-lg" href="#" role="button" ng-click="addMonster(some_name, selectedMonster.name)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to Encounter</button>
-                  </li>
-                  <li>
-                    <button class="btn btn-success btn-lg" href="#" role="button" ng-click="addName()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Generate Name</button>
-                  </li>
-                </ul>
+                <button class="btn btn-success btn-lg" ng-click="addName()"><span class="glyphicon glyphicon-refresh" ></span> Generate Name</button>
+
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+    <div class="row">
       <div class="col-md-3">
-          <div class="search-alert">
+
             <ul class="list-inline">
               <li>
                 <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
               </li>
               <li>
-                <button class="btn btn-primary btn-sm" type="button" ng-click="generateXML()">
-                Generate <span class="badge">{{$storage.monsterCount}}</span>
-              </button>
+                <button class="btn btn-primary btn-sm" ng-click="generateXML()">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
               </li>
             </ul>
-          </div>
+
         <ul class="monsters-list">
           <li ng-repeat="monster in monsters | filter:query">
             <a href="#" ng-click="getMonsterInfo(monster.id)">{{monster.name}}</a>
           </li>
         </ul>
       </div>
-
-
     </div>
+
   </div>
 </body>
 </html>
