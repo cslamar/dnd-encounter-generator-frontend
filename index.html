@@ -65,11 +65,11 @@
           </li>
           <li>
             <form action="{{battleName}}" method="get">
-              <button class="btn btn-primary btn-sm" type="submit">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
+              <button class="btn btn-primary btn-sm" type="submit" ng-disabled="!encounter_name">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
             </form>
           </li>
           <li>
-            <button class="btn btn-warning btn-sm" ng-click="generateXML()">Generate XML</button>
+            <button class="btn btn-warning btn-sm" ng-click="generateXML()" ng-disabled="!encounter_name">Generate XML</button>
           </li>
         </ul>
 
