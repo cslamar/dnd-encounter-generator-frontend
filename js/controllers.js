@@ -44,10 +44,9 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
   }
 
   $scope.generateXML = function() {
-    var monsterManifest = {"monsters": $scope.$storage.encounter, "name": "sample-battle"};
+    var monsterManifest = {"monsters": $scope.$storage.encounter, "name": $scope.encounter_name};
     console.log(monsterManifest);
-
-    $http.post('http://e.slamar.com/api/v1/generate-encounter/', monsterManifest)
+    $http.put('http://e.slamar.com/api/v1/generate-encounter/' + $scope.encounter_name, monsterManifest)
     .success(function(data){
       console.log("Battle Created!!");
       console.log(data);

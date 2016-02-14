@@ -61,10 +61,15 @@
             <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
           </li>
           <li>
-            <form action="/api/v1/generate-encounter/my-battle.xml" method="post">
-              <input name="monsters" value="{{encounter}}" />
+            <input type="text" class="form-control" id="encounter-name" placeholder="Encounter Name" ng-model="encounter_name">
+          </li>
+          <li>
+            <form action="/api/v1/encounter/my-battle.xml" method="get">
               <button class="btn btn-primary btn-sm" type="submit">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
             </form>
+          </li>
+          <li>
+            <button class="btn btn-warning btn-sm" ng-click="generateXML()">Generate XML</button>
           </li>
         </ul>
 
