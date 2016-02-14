@@ -11,7 +11,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
 
   $scope.encounter = $scope.$storage.encounter;
 
-  $http.get('http://e.slamar.com/api/v1/monsters/').success(function(data) {
+  $http.get('/api/v1/monsters/').success(function(data) {
     $scope.monsters = data.monsters;
   });
 
@@ -30,7 +30,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
 
   $scope.getMonsterInfo = function(id) {
     console.log('Getting monster info...');
-    $http.get('http://e.slamar.com/api/v1/monsters/' + id +'/').success(function(data){
+    $http.get('/api/v1/monsters/' + id +'/').success(function(data){
       console.log(data);
       $scope.selectedMonster = data;
     });
@@ -47,7 +47,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     var monsterManifest = {"monsters": $scope.$storage.encounter, "name": $scope.encounter_name};
     console.log(monsterManifest);
     $scope.battleName = $sce.trustAsResourceUrl('/api/v1/encounter/' + $scope.encounter_name + '.xml');
-    $http.put('http://e.slamar.com/api/v1/generate-encounter/' + $scope.encounter_name, monsterManifest)
+    $http.put('/api/v1/generate-encounter/' + $scope.encounter_name, monsterManifest)
     .success(function(data){
       console.log("Battle Created!!");
       console.log(data);
