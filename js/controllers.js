@@ -1,6 +1,6 @@
 var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver']);
 
-encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob) {
+encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob, $sce) {
   var name_array = [];
 
   $scope.$storage = $sessionStorage;
@@ -46,6 +46,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
   $scope.generateXML = function() {
     var monsterManifest = {"monsters": $scope.$storage.encounter, "name": $scope.encounter_name};
     console.log(monsterManifest);
+    $scope.battleName = $sce.trustAsResourceUrl('/api/v1/encounter/' + $scope.encounter_name + '.xml');
     $http.put('http://e.slamar.com/api/v1/generate-encounter/' + $scope.encounter_name, monsterManifest)
     .success(function(data){
       console.log("Battle Created!!");
