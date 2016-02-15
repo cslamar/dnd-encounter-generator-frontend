@@ -1,13 +1,19 @@
-var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver']);
+var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver', 'ui.bootstrap']);
 
 encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob, $sce) {
   var name_array = [];
+
+  $scope.selected = undefined;
 
   $scope.$storage = $sessionStorage;
   $scope.$storage = $sessionStorage.$default({
     monsterCount: 0,
     encounter: []
   });
+
+  $scope.testMonster = function(value){
+    console.log(value);
+  };
 
   $scope.encounter = $scope.$storage.encounter;
 
@@ -54,6 +60,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     $http.put('/api/v1/generate-encounter/' + $scope.encounter_name, monsterManifest)
     .success(function(data){
       console.log("Battle Created!!");
+      // window.alert("Battle XML Generated");
       console.log(data);
       /*
       // var someFile = new Blob([data], { type: 'application/xml' });

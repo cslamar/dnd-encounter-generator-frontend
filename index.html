@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <title>Encounter Generator</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/ngstorage/ngStorage.min.js"></script>
   <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="js/controllers.js"></script>
 </head>
 <body ng-controller="EncounterCtrl">
@@ -70,6 +72,9 @@
           </li>
           <li>
             <button class="btn btn-warning btn-sm" ng-click="generateXML()" ng-disabled="!encounter_name">Generate XML</button>
+          </li>
+          <li>
+              <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:8" class="form-control" placeholder="Monsters name" typeahead-on-select="getMonsterInfo(selected.id)">
           </li>
         </ul>
 
