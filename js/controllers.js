@@ -23,16 +23,20 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     $scope.random_name = data.names_set[seed];
   });
 
-  $scope.addName = function(){
+  var generateName = function(){
     var seed = Math.round((Math.random() * 1000) % name_array.length);
+    // console.log(name_array[seed]);
     $scope.some_name = name_array[seed];
   };
+
+  $scope.addName = generateName;
 
   $scope.getMonsterInfo = function(id) {
     console.log('Getting monster info...');
     $http.get('/api/v1/monsters/' + id +'/').success(function(data){
       console.log(data);
       $scope.selectedMonster = data;
+      generateName();
     });
   }
 
