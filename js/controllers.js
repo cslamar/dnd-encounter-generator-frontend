@@ -1,6 +1,6 @@
 var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver', 'ui.bootstrap']);
 
-encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob, $sce) {
+encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob, $uibModal, $sce) {
   var name_array = [];
 
   $scope.isArray = angular.isArray;
@@ -79,4 +79,48 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     });
   }
 
+  // modal tests
+  $scope.animationsEnabled = true;
+  $scope.open = function (size) {
+
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        },
+        storage: function () {
+          return $scope.$storage;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  // End tests
+
 });
+
+// modal tests
+angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, storage) {
+
+  $scope.storage = storage;
+  console.log(storage);
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+// end tests
