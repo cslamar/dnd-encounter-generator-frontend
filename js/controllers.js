@@ -4,6 +4,11 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
   var name_array = [];
 
   $scope.selected = undefined;
+  $scope.showList = false;
+
+  $scope.toggleList = function(){
+    $scope.showList = !$scope.showList;
+  };
 
   $scope.$storage = $sessionStorage;
   $scope.$storage = $sessionStorage.$default({

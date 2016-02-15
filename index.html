@@ -63,6 +63,9 @@
             <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
           </li>
           <li>
+            <button type="button" class="btn btn-primary" ng-click="toggleList()">Show All <span class="badge">{{(monsters | filter:query).length}}</span></button>
+          </li>
+          <li>
             <input type="text" class="form-control" id="encounter-name" placeholder="Encounter Name" ng-model="encounter_name">
           </li>
           <li>
@@ -74,11 +77,11 @@
             <button class="btn btn-warning btn-sm" ng-click="generateXML()" ng-disabled="!encounter_name">Generate XML</button>
           </li>
           <li>
-              <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:8" class="form-control" placeholder="Monsters name" typeahead-on-select="getMonsterInfo(selected.id)">
+              <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:8" class="form-control" placeholder="Monster name" typeahead-on-select="getMonsterInfo(selected.id)">
           </li>
         </ul>
 
-        <ul class="monsters-list">
+        <ul class="monsters-list" ng-show="showList">
           <li ng-repeat="monster in monsters | filter:query">
             <a href="#" ng-click="getMonsterInfo(monster.id)">{{monster.name}}</a>
           </li>
