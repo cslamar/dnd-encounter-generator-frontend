@@ -22,37 +22,46 @@
           <h1>{{selectedMonster.name || "Monster Details"}}</h1>
           <div class="container">
             <div class="row">
-            <div class="col-md-4">
-              <span class="lead" ng-if="some_name">Name: <em class="pull-right">{{some_name}}</em></span>
-              <ul class="list-unstyled">
-                <li><span class="lead">Strength: <em class="pull-right">{{selectedMonster.str}}</em></span></li>
-                <li><span class="lead">Dexterity: <em class="pull-right">{{selectedMonster.dex}}</em></span></li>
-                <li><span class="lead">Constitution: <em class="pull-right">{{selectedMonster.con}}</em></span></li>
-                <li><span class="lead">Intelligence: <em class="pull-right">{{selectedMonster.int}}</em></span></li>
-                <li><span class="lead">Wisdom: <em class="pull-right">{{selectedMonster.wis}}</em></span></li>
-                <li><span class="lead">Charisma: <em class="pull-right">{{selectedMonster.cha}}</em></span></li>
-              </ul>
+              <div class="col-md-6 col-sm-6">
+                <span class="lead" ng-if="some_name">Name: <em class="pull-right">{{some_name}}</em></span>
+                <ul class="list-unstyled">
+                  <li><span class="lead">Strength: <em class="pull-right">{{selectedMonster.str}}</em></span></li>
+                  <li><span class="lead">Dexterity: <em class="pull-right">{{selectedMonster.dex}}</em></span></li>
+                  <li><span class="lead">Constitution: <em class="pull-right">{{selectedMonster.con}}</em></span></li>
+                  <li><span class="lead">Intelligence: <em class="pull-right">{{selectedMonster.int}}</em></span></li>
+                  <li><span class="lead">Wisdom: <em class="pull-right">{{selectedMonster.wis}}</em></span></li>
+                  <li><span class="lead">Charisma: <em class="pull-right">{{selectedMonster.cha}}</em></span></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <ul class="list-unstyled">
+                  <li><span class="lead">Armor Class: <span class="pull-right">{{selectedMonster.ac}}</span></span></li>
+                  <li><span class="lead">Hit Points: <span class="pull-right">{{selectedMonster.hp}}</span></span></li>
+                  <li><span class="lead">Size: <span class="pull-right">{{selectedMonster.size}}</span></span></li>
+                  <li><span class="lead">Challenge Rating: <span class="pull-right">{{selectedMonster.cr}}</span></span></li>
+                </ul>
+              </div>
             </div>
-
-            <div class="col-md-8">
-              <ul>
-                <li ng-repeat="action in selectedMonster.action">
-                  <span class="lead">{{ action.name }}: </span>
-                  <ul>
-                    <div ng-if="!isArray(action.text)">
-                      <li>
-                        <span>{{ action.text }}</span>
-                      </li>
-                    </div>
-                    <div ng-if="isArray(action.text)">
-                      <li ng-repeat="attack in action.text track by $index">
-                        <span>{{ attack }}</span>
-                      </li>
-                    </div>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <ul>
+                  <li ng-repeat="action in selectedMonster.action">
+                    <span class="lead">{{ action.name }}: </span>
+                    <ul>
+                      <div ng-if="!isArray(action.text)">
+                        <li>
+                          <span>{{ action.text }}</span>
+                        </li>
+                      </div>
+                      <div ng-if="isArray(action.text)">
+                        <li ng-repeat="attack in action.text track by $index">
+                          <span>{{ attack }}</span>
+                        </li>
+                      </div>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
