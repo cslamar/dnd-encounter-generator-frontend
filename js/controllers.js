@@ -3,6 +3,7 @@ var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver', '
 encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob, $sce) {
   var name_array = [];
 
+  $scope.isArray = angular.isArray;
   $scope.selected = undefined;
   $scope.showList = false;
 

@@ -33,6 +33,26 @@
                 <li><span class="lead">Charisma: <em class="pull-right">{{selectedMonster.cha}}</em></span></li>
               </ul>
             </div>
+
+            <div class="col-md-8">
+              <ul>
+                <li ng-repeat="action in selectedMonster.action">
+                  <span class="lead">{{ action.name }}: </span>
+                  <ul>
+                    <div ng-if="!isArray(action.text)">
+                      <li>
+                        <span>{{ action.text }}</span>
+                      </li>
+                    </div>
+                    <div ng-if="isArray(action.text)">
+                      <li ng-repeat="attack in action.text track by $index">
+                        <span>{{ attack }}</span>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
             </div>
           </div>
 
