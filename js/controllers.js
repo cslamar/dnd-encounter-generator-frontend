@@ -1,6 +1,6 @@
 var encounterApp = angular.module('encounterApp', ['ngStorage', 'ui.bootstrap']);
 
-encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorage, $uibModal, $sce) {
+encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorage, $uibModal, $sce, $document) {
   var name_array = [];
   var generateName = function(){
     var seed = Math.round((Math.random() * 1000) % name_array.length);
@@ -81,7 +81,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
 
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: 'myModalContent.html',
+      templateUrl: '/confirm-modal.html',
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
@@ -92,10 +92,12 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
     });
 
     modalInstance.result.then(function (theBattle) {
+
       $scope.encounter_name = theBattle;
       console.log("the battle: ", theBattle);
       $scope.generateXML();
     }, function () {
+
       console.log('Modal dismissed at: ' + new Date());
     });
   };

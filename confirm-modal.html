@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3 class="modal-title">Generate Encounter with {{storage.monsterCount || 0}} Enemies</h3>
+</div>
+<div class="modal-body">
+  <input type="text" class="form-control" id="encounter-name" placeholder="Encounter Name" ng-model="encounter_name">
+  <ul>
+    <li ng-repeat="enemy in storage.encounter">{{enemy.label}} the {{enemy.monster}}</li>
+  </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()" ng-disabled="!storage.monsterCount || encounter_name == undefined || encounter_name == ''">Generate XML</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+</div>

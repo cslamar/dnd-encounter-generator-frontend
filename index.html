@@ -2,6 +2,7 @@
 <html lang="en" ng-app="encounterApp">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Encounter Generator</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
@@ -24,7 +25,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" ng-click="clearList()">Clear List</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="#" ng-click="open('lg')">Generate Encounter <span class="badge">{{$storage.monsterCount}}</span></a></li>
+          <li><a href="#" ng-click="open()">Generate Encounter <span class="badge">{{$storage.monsterCount}}</span></a></li>
           <li>
             <form class="navbar-form" role="search">
               <div class="form-group">
@@ -44,7 +45,7 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-md-12 col-sm-12 container">
+      <div class="container">
 
         <div class="jumbotron" ng-if="selectedMonster">
           <h1>{{selectedMonster.name || "Monster Details"}}</h1>
@@ -133,6 +134,7 @@
 
   <form id="battle-form" action="{{battleName}}" method="get"></form>
 
+<!--
   <script type="text/ng-template" id="myModalContent.html">
       <div class="modal-header">
           <h3 class="modal-title">Generate Encounter with {{storage.monsterCount || 0}} Enemies</h3>
@@ -148,6 +150,6 @@
           <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
       </div>
   </script>
-
+-->
 </body>
 </html>
