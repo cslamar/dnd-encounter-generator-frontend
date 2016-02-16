@@ -25,8 +25,10 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
     encounter: []
   });
 
-  $scope.testMonster = function(value){
-    console.log(value);
+  $scope.clearList = function(){
+    $scope.$storage.monsterCount = 0;
+    $scope.$storage.encounter = [];
+    console.log("List Cleared!");
   };
 
   $scope.encounter = $scope.$storage.encounter;
