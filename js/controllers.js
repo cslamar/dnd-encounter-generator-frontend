@@ -6,6 +6,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
   $scope.isArray = angular.isArray;
   $scope.selected = undefined;
   $scope.showList = false;
+  $scope.bn = undefined;
 
   $scope.toggleList = function(){
     $scope.showList = !$scope.showList;
@@ -73,6 +74,8 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
       someFile = new Blob([data], { type: 'text/xml' });
       FileSaver.saveAs(someFile, 'sample-battle.xml', true);
       */
+      // $location.path('/api/v1/encounter/' + $scope.encounter_name + '.xml');
+      document.getElementById('battle-form').submit();
     })
     .error(function(data){
       console.log("Something went wrong...");
@@ -98,8 +101,10 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
       }
     });
 
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
+    modalInstance.result.then(function (theBattle) {
+      $scope.encounter_name = theBattle;
+      console.log("the battle: ", theBattle);
+      $scope.generateXML();
     }, function () {
       console.log('Modal dismissed at: ' + new Date());
     });
@@ -116,7 +121,7 @@ angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,
   console.log(storage);
 
   $scope.ok = function () {
-    $uibModalInstance.close();
+    $uibModalInstance.close($scope.encounter_name);
   };
 
   $scope.cancel = function () {
