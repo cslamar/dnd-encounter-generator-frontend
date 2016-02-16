@@ -3,9 +3,23 @@
 </div>
 <div class="modal-body">
   <input type="text" class="form-control" id="encounter-name" placeholder="Encounter Name" ng-model="encounter_name">
-  <ul>
-    <li ng-repeat="enemy in storage.encounter">{{enemy.label}} the {{enemy.monster}}</li>
-  </ul>
+
+  <table class="table">
+    <thead>
+      <td><strong>Name</strong></td>
+      <td><strong>Monster</strong></td>
+    </thead>
+    <tbody>
+      <tr ng-repeat="enemy in storage.encounter">
+        <td>
+          {{ enemy.label }}
+        </td>
+        <td>
+          {{ enemy.monster }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="modal-footer">
     <button class="btn btn-success" type="button" ng-click="ok()" ng-disabled="!storage.monsterCount || encounter_name == undefined || encounter_name == ''">Generate XML</button>

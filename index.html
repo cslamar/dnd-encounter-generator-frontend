@@ -17,7 +17,7 @@
     <div class="container-fluid">
 
       <div class="navbar-header">
-        <span class="navbar-brand" href="#">
+        <span class="navbar-brand">
           Encounter Builder
         </span>
       </div>
@@ -29,11 +29,8 @@
           <li>
             <form class="navbar-form" role="search">
               <div class="form-group">
-                <!-- <div class="input-group"> -->
                   <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:10" class="form-control" placeholder="Monster name" typeahead-on-select="getMonsterInfo(selected.id)">
-                  <!-- <div class="input-group-addon" id="clear-btn" ng-click="selected = ''"><span class="glyphicon glyphicon-remove"></span></div> -->
                   <button type="button" class="btn btn-sm" ng-click="selected = ''"><span class="glyphicon glyphicon-remove"></button>
-                <!-- </div> -->
               </div>
             </form>
           </li>
@@ -133,23 +130,5 @@
   </div>
 
   <form id="battle-form" action="{{battleName}}" method="get"></form>
-
-<!--
-  <script type="text/ng-template" id="myModalContent.html">
-      <div class="modal-header">
-          <h3 class="modal-title">Generate Encounter with {{storage.monsterCount || 0}} Enemies</h3>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" id="encounter-name" placeholder="Encounter Name" ng-model="encounter_name">
-        <ul>
-          <li ng-repeat="enemy in storage.encounter">{{enemy.label}} the {{enemy.monster}}</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-success" type="button" ng-click="ok()" ng-disabled="!storage.monsterCount || encounter_name == undefined || encounter_name == ''">Generate XML</button>
-          <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
-      </div>
-  </script>
--->
 </body>
 </html>
