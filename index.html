@@ -19,26 +19,27 @@
       <div class="col-md-12">
 
         <ul class="list-inline">
-          <li>
+          <!-- <li>
             <input type="text" class="form-control" id="monster-search" placeholder="Monster name..." ng-model="query">
           </li>
           <li>
             <button type="button" class="btn btn-primary" ng-click="toggleList()">Show All <span class="badge">{{(monsters | filter:query).length}}</span></button>
           </li>
-          <!-- <li>
+          <li>
             <input type="text" class="form-control" id="encounter-name" placeholder="Encounter Name" ng-model="encounter_name">
           </li>
           <li>
             <form action="{{battleName}}" method="get">
               <button class="btn btn-primary btn-sm" type="submit" ng-disabled="!encounter_name">Generate <span class="badge">{{$storage.monsterCount}}</span></button>
             </form>
-          </li> -->
+          </li>
           <li>
             <button class="btn btn-warning btn-sm" ng-click="generateXML()" ng-disabled="!encounter_name">Generate XML</button>
-          </li>
+          </li>  -->
           <li>
               <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:8" class="form-control" placeholder="Monster name" typeahead-on-select="getMonsterInfo(selected.id)">
           </li>
+          <li><button type="button" class="btn btn-warning" ng-click="open('lg')">Generate Encounter <span class="badge">{{$storage.monsterCount}}</span></button></li>
         </ul>
 
       </div>
@@ -122,9 +123,7 @@
 
   </div>
 
-  <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
-  <form id="battle-form" action="{{battleName}}" method="get">
-  </form>
+  <form id="battle-form" action="{{battleName}}" method="get"></form>
 
   <script type="text/ng-template" id="myModalContent.html">
       <div class="modal-header">
