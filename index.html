@@ -20,7 +20,7 @@
 
         <ul class="list-inline">
           <li>
-            <div class="input-group">
+            <div class="input-group col-md-5">
               <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:10" class="form-control" placeholder="Monster name" typeahead-on-select="getMonsterInfo(selected.id)">
               <div class="input-group-addon" id="clear-btn" ng-click="selected = ''"><span class="glyphicon glyphicon-remove"></span></div>
             </div>
