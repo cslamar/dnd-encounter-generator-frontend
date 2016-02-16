@@ -1,8 +1,14 @@
-var encounterApp = angular.module('encounterApp', ['ngStorage', 'ngFileSaver', 'ui.bootstrap']);
+var encounterApp = angular.module('encounterApp', ['ngStorage', 'ui.bootstrap']);
 
-encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $sessionStorage, FileSaver, Blob, $uibModal, $sce) {
+encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorage, $uibModal, $sce) {
   var name_array = [];
+  var generateName = function(){
+    var seed = Math.round((Math.random() * 1000) % name_array.length);
+    // console.log(name_array[seed]);
+    $scope.some_name = name_array[seed];
+  };
 
+  $scope.addName = generateName;
   $scope.isArray = angular.isArray;
   $scope.isObject = angular.isObject;
   $scope.selected = undefined;
@@ -37,14 +43,6 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     $scope.random_name = data.names_set[seed];
   });
 
-  var generateName = function(){
-    var seed = Math.round((Math.random() * 1000) % name_array.length);
-    // console.log(name_array[seed]);
-    $scope.some_name = name_array[seed];
-  };
-
-  $scope.addName = generateName;
-
   $scope.getMonsterInfo = function(id) {
     console.log('Getting monster info...');
     $http.get('/api/v1/monsters/' + id +'/').success(function(data){
@@ -68,14 +66,6 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
     $http.put('/api/v1/generate-encounter/' + $scope.encounter_name, monsterManifest)
     .success(function(data){
       console.log("Battle Created!!");
-      // window.alert("Battle XML Generated");
-      console.log(data);
-      /*
-      // var someFile = new Blob([data], { type: 'application/xml' });
-      someFile = new Blob([data], { type: 'text/xml' });
-      FileSaver.saveAs(someFile, 'sample-battle.xml', true);
-      */
-      // $location.path('/api/v1/encounter/' + $scope.encounter_name + '.xml');
       document.getElementById('battle-form').submit();
     })
     .error(function(data){
@@ -93,9 +83,6 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
-        items: function () {
-          return $scope.items;
-        },
         storage: function () {
           return $scope.$storage;
         }
