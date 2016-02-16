@@ -13,25 +13,36 @@
   <script src="js/controllers.js"></script>
 </head>
 <body ng-controller="EncounterCtrl">
-  <div class="container-fluid">
-    <div class="row">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
 
-      <div class="col-md-12">
-
-        <ul class="list-inline">
-          <li>
-            <div class="input-group">
-              <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:10" class="form-control" placeholder="Monster name" typeahead-on-select="getMonsterInfo(selected.id)">
-              <div class="input-group-addon" id="clear-btn" ng-click="selected = ''"><span class="glyphicon glyphicon-remove"></span></div>
-            </div>
-          </li>
-          <li><button type="button" class="btn btn-warning" ng-click="open('lg')">Generate Encounter <span class="badge">{{$storage.monsterCount}}</span></button></li>
-          <li><button type="button" class="btn btn-danger" ng-click="clearList()">Clear List</button></li>
-        </ul>
-
+      <div class="navbar-header">
+        <span class="navbar-brand" href="#">
+          Encounter Builder
+        </span>
       </div>
 
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" ng-click="clearList()">Clear List</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#" ng-click="open('lg')">Generate Encounter <span class="badge">{{$storage.monsterCount}}</span></a></li>
+          <li>
+            <form class="navbar-form" role="search">
+              <div class="form-group">
+                <!-- <div class="input-group"> -->
+                  <input type="text" ng-model="selected" uib-typeahead="monster as monster.name for monster in monsters | filter:$viewValue | limitTo:10" class="form-control" placeholder="Monster name" typeahead-on-select="getMonsterInfo(selected.id)">
+                  <!-- <div class="input-group-addon" id="clear-btn" ng-click="selected = ''"><span class="glyphicon glyphicon-remove"></span></div> -->
+                  <button type="button" class="btn btn-sm" ng-click="selected = ''"><span class="glyphicon glyphicon-remove"></button>
+                <!-- </div> -->
+              </div>
+            </form>
+          </li>
+        </ul>
+
     </div>
+  </nav>
+
+  <div class="container-fluid">
 
     <div class="row">
       <div class="col-md-12 col-sm-12 container">
