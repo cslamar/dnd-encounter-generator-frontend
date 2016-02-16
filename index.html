@@ -73,24 +73,35 @@
                 </ul>
               </div>
             </div>
+
             <div class="row">
               <div class="col-md-12 col-sm-12">
                 <ul>
-                  <li ng-repeat="action in selectedMonster.action">
-                    <span class="lead">{{ action.name }}: </span>
-                    <ul>
-                      <div ng-if="!isArray(action.text)">
-                        <li>
-                          <span>{{ action.text }}</span>
-                        </li>
-                      </div>
-                      <div ng-if="isArray(action.text)">
-                        <li ng-repeat="attack in action.text track by $index">
-                          <span>{{ attack }}</span>
-                        </li>
-                      </div>
-                    </ul>
-                  </li>
+                  <div ng-if="isArray(selectedMonster.action)">
+                    <li ng-repeat="action in selectedMonster.action">
+                      <span class="lead">{{ action.name }}: </span>
+                      <ul>
+                        <div ng-if="!isArray(action.text)">
+                          <li>
+                            <span>{{ action.text }}</span>
+                          </li>
+                        </div>
+                        <div ng-if="isArray(action.text)">
+                          <li ng-repeat="attack in action.text track by $index">
+                            <span>{{ attack }}</span>
+                          </li>
+                        </div>
+                      </ul>
+                    </li>
+                  </div>
+                  <div ng-if="!isArray(selectedMonster.action)">
+                    <li>
+                      <span class="lead">{{selectedMonster.action.name}}</span>
+                      <ul>
+                        <li><span>{{selectedMonster.action.text}}</span></li>
+                      </ul>
+                    </li>
+                  </div>
                 </ul>
               </div>
             </div>

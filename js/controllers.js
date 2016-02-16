@@ -4,6 +4,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $location, $se
   var name_array = [];
 
   $scope.isArray = angular.isArray;
+  $scope.isObject = angular.isObject;
   $scope.selected = undefined;
   $scope.showList = false;
   $scope.bn = undefined;
