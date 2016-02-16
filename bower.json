@@ -10,7 +10,6 @@
     "angular-bootstrap": "~1.x",
     "jquery": "~2.1.1",
     "bootstrap": "~3.1.1",
-    "ngstorage": "latest",
-    "angular-file-saver": "latest"
+    "ngstorage": "latest"
   }
 }
