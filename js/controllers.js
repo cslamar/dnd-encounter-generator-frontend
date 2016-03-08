@@ -14,7 +14,8 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
   $scope.selected = undefined;
   $scope.showList = false;
   $scope.bn = undefined;
-
+  $scope.qtyRange = [1, 2, 3, 4, 5, 6];
+  $scope.qty = 1;
   $scope.toggleList = function(){
     $scope.showList = !$scope.showList;
   };
@@ -24,6 +25,10 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
     monsterCount: 0,
     encounter: []
   });
+
+  $scope.setQty = function(q) {
+    $scope.qty = q;
+  };
 
   $scope.clearList = function(){
     $scope.$storage.monsterCount = 0;
@@ -51,15 +56,22 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
       console.log(data);
       $scope.selectedMonster = data;
       generateName();
+      $scope.qty = 1;
     });
-  }
+  };
 
-  $scope.addMonster = function(name, monster) {
+  $scope.addMonster = function(name, monster, quantity) {
     console.log(name, monster);
-    $sessionStorage.monsterCount = $sessionStorage.monsterCount + 1;
-    var newMonster = {"label": name, "monster": monster};
-    $sessionStorage.encounter.push(newMonster);
-  }
+    $sessionStorage.monsterCount = $sessionStorage.monsterCount + quantity;
+    var mName = name;
+    for( var i = 0; i < quantity; i++){
+      var newMonster = {"label": mName, "monster": monster};
+      $sessionStorage.encounter.push(newMonster);
+      var seed =  Math.round((Math.random() * 1000) % name_array.length);
+      mName = name_array[seed]
+    }
+    $scope.qty = 1;
+  };
 
   $scope.generateXML = function() {
     var monsterManifest = {"monsters": $scope.$storage.encounter, "name": $scope.encounter_name};
@@ -73,7 +85,7 @@ encounterApp.controller('EncounterCtrl', function ($scope, $http, $sessionStorag
     .error(function(data){
       console.log("Something went wrong...");
     });
-  }
+  };
 
   // modal tests
   $scope.animationsEnabled = true;

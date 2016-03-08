@@ -106,9 +106,22 @@
             <div class="container">
               <div class="col-xs-12 col-sm-12">
                 <ul class="list-inline">
+
                   <li>
-                    <button class="btn btn-primary btn-lg" ng-click="addMonster(some_name, selectedMonster.name)"><span class="glyphicon glyphicon-plus"></span> Add to Encounter</button>
+                    <!-- Monster Split button -->
+                    <div class="btn-group" uib-dropdown>
+                      <button id="split-button" type="button" class="btn btn-primary btn-lg" ng-click="addMonster(some_name, selectedMonster.name, qty)"><span class="glyphicon glyphicon-plus"></span> Add to Encounter <span class="badge"> {{ qty }} </span></button>
+                      <button type="button" class="btn btn-primary btn-lg" uib-dropdown-toggle>
+                        <span class="caret"></span>
+                      </button>
+                      <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                        <li role="menuitem" ng-repeat="q in qtyRange">
+                          <a ng-click="setQty(q)"> + {{ q }}</a>
+                        </li>
+                      </ul>
+                    </div>
                   </li>
+
                   <li>
                     <button class="btn btn-success btn-lg" ng-click="addName()"><span class="glyphicon glyphicon-refresh" ></span> Generate Name</button>
                   </li>
